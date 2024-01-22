@@ -10,7 +10,7 @@ import net.serenitybdd.rest.SerenityRest;
 import java.util.HashMap;
 
 public class StoreSteps {
-    @Step("Getting the Store information with name : {0} , address : {1}, city : {2}, state : {3} and zip : {4}")
+    @Step("Creating the Store information with name : {0} , address : {1}, city : {2}, state : {3} and zip : {4}")
     public ValidatableResponse createStore(String name, String address, String city, String state, String zip) {
 
         StorePojo storePojo = new StorePojo();
@@ -42,7 +42,7 @@ public class StoreSteps {
         return storeMap;
     }
 
-    @Step("Getting the Store information with name : {0} , address : {1}, city : {2}, state : {3}, zip : {4} and storeId: {5}")
+    @Step("Updating the Store information with name : {0} , address : {1}, city : {2}, state : {3}, zip : {4} and storeId: {5}")
     public ValidatableResponse updateStore(String name, String address, String city, String state,String zip, int storeId) {
 
         StorePojo storePojo = new StorePojo();
@@ -72,9 +72,9 @@ public class StoreSteps {
     }
 
     @Step("Getting store information with storeId: {0}")
-    public ValidatableResponse getStoreById(int studentId) {
+    public ValidatableResponse getStoreById(int storeId) {
         return SerenityRest.given().log().all()
-                .queryParam("id", studentId)
+                .queryParam("id", storeId)
                 .when()
                 .get(Path.STORES)
                 .then().log().all();

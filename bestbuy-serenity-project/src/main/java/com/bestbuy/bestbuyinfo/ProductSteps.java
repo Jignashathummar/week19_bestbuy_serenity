@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class ProductSteps {
 
-    @Step("Getting the Student information with name : {0} , type : {1}, upc : {2}, description : {3} and model : {4}")
+    @Step("Creating the product information with name : {0} , type : {1}, upc : {2}, description : {3} and model : {4}")
     public ValidatableResponse createProduct(String name, String type, String upc, String description, String model) {
 
         ProductPojo productPojo = new ProductPojo();
@@ -28,7 +28,7 @@ public class ProductSteps {
                 .post(Path.PRODUCT)
                 .then().log().all();
     }
-    @Step("Getting the store information with name : {0}")
+    @Step("Getting the product information with name : {0}")
     public HashMap<String, Object> getProduct(String name) {
         String s1 = "data.findAll{it.name == '";
         String s2 = "'}.get(0)";
@@ -41,7 +41,7 @@ public class ProductSteps {
                 .path(s1 + name + s2);
         return productMap;
     }
-    @Step("Getting the Store information with name : {0} , type : {1}, upc : {2}, description : {3} and model : {4}")
+    @Step("Updating the product information with name : {0} , type : {1}, upc : {2}, description : {3} and model : {4}")
     public ValidatableResponse updateProduct(String name, String type, String upc, String description,String model, int productId) {
 
         ProductPojo productPojo = new ProductPojo();
@@ -68,10 +68,10 @@ public class ProductSteps {
                 .delete(Path.PRODUCT)
                 .then().log().all();
     }
-    @Step("Getting store information with productId: {0}")
-    public ValidatableResponse getProductById(int studentId) {
+    @Step("Getting product information with productId: {0}")
+    public ValidatableResponse getProductById(int productId) {
         return SerenityRest.given().log().all()
-                .queryParam("id", studentId)
+                .queryParam("id", productId)
                 .when()
                 .get(Path.PRODUCT)
                 .then().log().all();
